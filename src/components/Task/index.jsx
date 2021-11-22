@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import logo from "../Logo/check.png";
 import "./styles.scss"
 
