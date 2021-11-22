@@ -1,0 +1,10 @@
+.listOfTask{
+    width: 30rem;
+    border: 1px solid black;
+    border-bottom: none;
+    margin: 0 auto;
+    overflow: hidden;
+    &__li{
+        list-style: none;
+    }
+}

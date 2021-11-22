@@ -1,0 +1,71 @@
+.task{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.2rem;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    &__check{
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        display: block;
+        &.vanish{
+            display: none;
+        }
+        &.desaparition{
+            animation: vanish 300ms ease;
+        }
+        &.aparition{
+            animation: sorprais 300ms ease;
+        }
+    }
+    &__logo{
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        display: block;
+        &.vanish{
+            display: none;
+        }
+        &.desaparition{
+            animation: vanish 300ms ease;
+        }
+        &.aparition{
+            animation: sorprais 300ms ease;
+        }
+    }
+    &__title{
+        margin-left: 2rem;
+        &.check{
+            text-decoration: line-through;
+        }
+    }
+}
+
+@keyframes vanish{
+    0%{
+        transform: rotate(0deg);
+        width: 1rem;
+        height: 1rem;
+    }
+    100%{
+        transform: rotate(180deg);
+        width: 0;
+        height: 0;
+    }
+}
+@keyframes sorprais{
+    0%{
+        transform: rotate(180deg);
+        width: 0rem;
+        height: 0rem;
+    }
+    100%{
+        transform: rotate(0deg);
+        width: 1rem;
+        height: 1rem;
+    }
+}

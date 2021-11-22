@@ -1,0 +1,14 @@
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    // &__text{
+    //     color: white;
+    // }
+    &__img{
+        margin-left: 1rem;
+        width: 35px;
+        height: 35px;
+    }
+}
