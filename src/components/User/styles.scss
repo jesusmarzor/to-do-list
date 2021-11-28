@@ -1,0 +1,11 @@
+.user{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    right: 5rem;
+    top: 2rem;
+    &__name{
+        margin-right: 0.5rem;
+    }
+}

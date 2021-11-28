@@ -1,10 +1,18 @@
 .listOfTask{
-    width: 30rem;
-    border: 1px solid black;
-    border-bottom: none;
-    margin: 0 auto;
-    overflow: hidden;
-    &__li{
-        list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .list{
+        width: 30rem;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        &__li{
+            list-style: none;
+        }
     }
+}
+.noTasks{
+    text-align: center;
 }

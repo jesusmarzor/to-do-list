@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "./check.png";
+import logo from "assets/img/check.png";
 import "./styles.scss";
 
-function Logo(){
+export function Logo(){
     return(
         <div className="logo">
             <h1 className="logo__text">To do list</h1>
@@ -10,5 +10,3 @@ function Logo(){
         </div>
     )
 }
-
-export default React.memo(Logo);
