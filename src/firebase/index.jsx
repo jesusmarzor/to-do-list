@@ -4,7 +4,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, up
 
 const firebaseConfig = {
     apiKey: "AIzaSyBiT2R9yW9-uRVqKgW78k4d1EObTvOsLQQ",
-    authDomain: "https://to-do-list.jesusmarzor.com",
+    authDomain: "to-do-list-7c4cc.firebaseapp.com",
     projectId: "to-do-list-7c4cc",
     storageBucket: "to-do-list-7c4cc.appspot.com",
     messagingSenderId: "381328186290",
