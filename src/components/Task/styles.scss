@@ -4,6 +4,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    width: 100%;
     .values{
         position: relative;
         padding: 1.2rem;
@@ -11,6 +12,8 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        overflow: hidden;
+        margin-right: 4.5rem;
         &__check{
             position: absolute;
             width: 1rem;

@@ -6,3 +6,9 @@
     border: .5px solid #2196f3;
     outline: none;
 }
+
+@media (max-width: 25rem){
+    .input{
+        width: 80%;
+    }
+}

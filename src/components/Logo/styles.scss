@@ -12,3 +12,21 @@
         height: 30px;
     }
 }
+
+@media (max-width: 450px){
+    .logo{
+        order: 2;
+    }
+}
+
+@media (max-width: 250px){
+    .logo{
+        &__text{
+            font-size: 25px;
+        }
+        &__img{
+            width: 25px;
+            height: 25px;
+        }
+    }
+}

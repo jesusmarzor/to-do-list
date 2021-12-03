@@ -1,23 +1,25 @@
 import React from "react";
-import {Form} from "components/Form"
+import {AddTask} from "components/AddTask"
 import {ListOfTasks} from "components/ListOfTasks"
 import { useList } from "hooks/useList";
-import { User } from "components/User";
+import { Nav } from "components/Nav";
 export function Home({logout}){
   const {list, addTask,editTask,deleteTask, setTaskCheck, deleteTasksCheck} = useList()
   return (
     <div>
-        <User logout={logout}/>
-        <Form
-          addTask = {addTask}
-        />
-        <ListOfTasks
-          list = {list}
-          editTask = {editTask}
-          deleteTask = {deleteTask}
-          setTaskCheck = {setTaskCheck}
-          deleteTasksCheck = {deleteTasksCheck}
-        />
+      <header className="header">
+        <Nav logout={logout}/>
+      </header>
+      <AddTask
+        addTask = {addTask}
+      />
+      <ListOfTasks
+        list = {list}
+        editTask = {editTask}
+        deleteTask = {deleteTask}
+        setTaskCheck = {setTaskCheck}
+        deleteTasksCheck = {deleteTasksCheck}
+      />
       </div>
     );
 }

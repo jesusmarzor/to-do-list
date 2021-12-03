@@ -1,0 +1,13 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 450px){
+    .nav{
+        flex-direction: column;
+        padding: 0;
+    }
+}

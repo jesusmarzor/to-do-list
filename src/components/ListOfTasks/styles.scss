@@ -3,8 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 30rem;
+    margin: 0 auto;
     .list{
-        width: 30rem;
+        width: 100%;
         margin: 0 auto;
         overflow: hidden;
         margin-bottom: 1rem;
@@ -15,4 +17,10 @@
 }
 .noTasks{
     text-align: center;
+}
+
+@media (max-width: 530px){
+    .listOfTask{
+        width: 80%;
+    }
 }

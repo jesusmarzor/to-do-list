@@ -3,10 +3,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
     .form{
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
+        width: 100%;
+    }
+    &__register{
+        margin-top: 1rem;
     }
 }

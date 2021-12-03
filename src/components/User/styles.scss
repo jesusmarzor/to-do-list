@@ -2,10 +2,15 @@
     display:flex;
     justify-content: flex-end;
     align-items: center;
-    position: absolute;
-    right: 5rem;
-    top: 2rem;
+    padding: 2rem;
     &__name{
         margin-right: 0.5rem;
+    }
+}
+
+@media (max-width: 450px){
+    .user{
+        order: 1;
+        padding-bottom: 0;
     }
 }

@@ -1,5 +1,4 @@
 import './App.scss';
-import { Logo } from 'components/Logo';
 import { Home } from 'pages/Home';
 import { Login } from 'pages/Login';
 import { Register } from 'pages/Register';
@@ -11,7 +10,6 @@ function App() {
   const { isAuthenticated, login, logout} = useAuth();
   return (
     <div className="App">
-      <Logo/>
       <BrowserRouter>
         <Routes>
           <Route
