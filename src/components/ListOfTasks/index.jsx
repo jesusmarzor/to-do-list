@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "components/Task";
-import "./styles.scss";
 import { Button } from "components/Button";
+import "./styles.scss";
 
 export function ListOfTasks({list, editTask, deleteTask, setTaskCheck, deleteTasksCheck}){
     if(list.length !== 0){

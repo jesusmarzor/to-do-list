@@ -1,12 +1,14 @@
 import React, { useRef, useState }  from "react";
 import { auth } from "firebase";
 import { Button } from "components/Button";
+import {AuthConsumer} from "contexts/AuthContext";
 import "./styles.scss";
 
-export function User({logout}){
+export function User(){
     const refArrow = useRef(null);
     const refMenu = useRef(null);
     const [deploy, setDeploy] = useState(false);
+    const {logout} = AuthConsumer()
     const handleClick = () => {
         if(!deploy){
             refMenu.current.classList.add('deploy');

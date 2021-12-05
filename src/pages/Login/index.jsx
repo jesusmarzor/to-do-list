@@ -5,12 +5,14 @@ import { useLocation } from "react-router";
 import "./styles.scss";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
+import {AuthConsumer} from "contexts/AuthContext";
 
-export function Login({isAuthenticated, login}){
+export function Login(){
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate()
     const locate = useLocation();
+    const {isAuthenticated, login} = AuthConsumer();
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)

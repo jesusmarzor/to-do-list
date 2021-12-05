@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import logo from "assets/img/check.png";
-// import { Button } from "components/Button";
 import "./styles.scss"
 
 function Task({title, done, editTask, deleteTask, setTaskCheck}){

@@ -3,13 +3,15 @@ import { auth, createUserWithEmailAndPassword, updateProfile } from "firebase";
 import { useNavigate } from "react-router-dom";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
+import {AuthConsumer} from "contexts/AuthContext";
 import "./styles.scss";
 
-export function Register({login}){
+export function Register(){
     const nameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate();
+    const {login} = AuthConsumer();
     const signUp = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)
