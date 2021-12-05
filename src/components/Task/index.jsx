@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import logo from "assets/img/check.png";
 // import { Button } from "components/Button";
 import "./styles.scss"
@@ -55,21 +55,30 @@ function Task({title, done, editTask, deleteTask, setTaskCheck}){
             setTaskCheck(taskTitle);
         }
     }
-    useEffect(()=>{
-        if(done){
-            checkboxRef.current.classList.add('vanish');
-            titleRef.current.classList.add('check');
-        }else{
-            logoRef.current.classList.add('vanish');
-        }
-        
-    },[done])
     return(
         <div className="task">
             <div onClick={taskClick} className="task_values values">
-                <input ref={checkboxRef} className="values__check" type="checkbox"/>
-                <img ref={logoRef} className="values__logo" src={logo} alt="check"/>
-                <p ref={titleRef} className="values__title">{taskTitle}</p>
+                {
+                    (done)
+                    ?
+                        <input ref={checkboxRef} className="values__check vanish" type="checkbox"/>
+                    :
+                        <input ref={checkboxRef} className="values__check" type="checkbox"/>
+                }
+                {
+                    (done)
+                    ?
+                        <img ref={logoRef} className="values__logo" src={logo} alt="check"/>
+                    :
+                        <img ref={logoRef} className="values__logo vanish" src={logo} alt="check"/>
+                }
+                {
+                    (done)
+                    ?
+                        <p ref={titleRef} className="values__title check">{taskTitle}</p>
+                    :
+                        <p ref={titleRef} className="values__title">{taskTitle}</p>
+                }
                 <input className="values__input vanish" onChange={handleChangeEdit} ref={inputEditRef} type="text" value={writing} maxLength="35"/>
             </div>
             <div className="task__buttons buttons">

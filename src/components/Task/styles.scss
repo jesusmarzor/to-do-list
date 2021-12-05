@@ -21,10 +21,10 @@
             pointer-events: none;
             display: block;
             &.desaparition{
-                animation: vanish 150ms ease;
+                animation: vanish 150ms forwards;
             }
             &.aparition{
-                animation: sorprais 150ms ease;
+                animation: sorprais 150ms forwards;
             }
         }
         &__logo{
@@ -33,10 +33,10 @@
             height: 1rem;
             display: block;
             &.desaparition{
-                animation: vanish 150ms ease;
+                animation: vanish 150ms forwards;
             }
             &.aparition{
-                animation: sorprais 150ms ease;
+                animation: sorprais 150ms forwards;
             }
         }
         &__title{
