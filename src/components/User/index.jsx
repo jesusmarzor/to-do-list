@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useRef, useState }  from "react";
 import { auth } from "firebase";
 import { Button } from "components/Button";
 import "./styles.scss";
-import { useRef, useState } from "react/cjs/react.development";
 
 export function User({logout}){
     const refArrow = useRef(null);
