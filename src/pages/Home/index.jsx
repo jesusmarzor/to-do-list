@@ -2,14 +2,12 @@ import React from "react";
 import {AddTask} from "components/AddTask"
 import {ListOfTasks} from "components/ListOfTasks"
 import { useList } from "hooks/useList";
-import { Nav } from "components/Nav";
-export function Home({logout}){
+import "./styles.scss";
+export function Home(){
   const {list, addTask,editTask,deleteTask, setTaskCheck, deleteTasksCheck} = useList()
   return (
-    <div>
-      <header className="header">
-        <Nav logout={logout}/>
-      </header>
+    <div className="home">
+      <h1 className="home__title">Tareas</h1>
       <AddTask
         addTask = {addTask}
       />
@@ -20,6 +18,6 @@ export function Home({logout}){
         setTaskCheck = {setTaskCheck}
         deleteTasksCheck = {deleteTasksCheck}
       />
-      </div>
+    </div>
     );
 }

@@ -3,11 +3,17 @@ import React from "react";
 import { User } from "components/User";
 import "./styles.scss";
 
-export function Nav({logout}){
+export function Nav({logout, isAuthenticated}){
     return(
         <nav className="nav">
             <Logo/>
-            <User logout={logout}/>
+            {
+                (isAuthenticated)
+                ?
+                <User logout={logout}/>
+                :
+                null
+            }
         </nav>
     )
 }

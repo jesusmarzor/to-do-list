@@ -4,6 +4,9 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    &__title{
+        padding: 2rem;
+    }
     .form{
         display: flex;
         flex-direction: column;

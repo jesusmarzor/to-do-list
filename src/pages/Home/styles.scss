@@ -1,3 +1,6 @@
-.header{
-    width: 100%;
+.home{
+    &__title{
+        text-align: center;
+        padding: 2rem;
+    }
 }

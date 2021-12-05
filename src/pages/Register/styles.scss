@@ -1,6 +1,12 @@
 .register{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
+    text-align: center;
+    &__title{
+        padding: 2rem;
+    }
+    &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }
