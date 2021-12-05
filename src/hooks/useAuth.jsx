@@ -1,18 +1,18 @@
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {auth} from "firebase";
 
 export function useAuth(){
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
     const login = () => {
         auth.onAuthStateChanged( userAuth => {
             if(userAuth){
-                setIsAuthenticated(true);
+                setUser(userAuth);
             }
         })
     }
     const logout = () => {
         auth.signOut();
-        setIsAuthenticated(false);
+        setUser(null);
     }
-    return {isAuthenticated, login, logout}
+    return useMemo(() => ({user, login, logout}),[user]);
 }

@@ -15,8 +15,8 @@ export function Register(){
     const signUp = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)
-        .then( () => {
-            updateProfile( auth.currentUser, {
+        .then( (userAuth) => {
+            updateProfile( userAuth.user, {
                 displayName: nameRef.current.value
             }).then( () => {
                 login();

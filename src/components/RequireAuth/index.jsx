@@ -4,8 +4,8 @@ import {AuthConsumer} from "contexts/AuthContext";
 
 export function RequireAuth({ children }){
   const location = useLocation();
-  const {isAuthenticated} = AuthConsumer();
-  if(!isAuthenticated){
+  const {user} = AuthConsumer();
+  if(user === null){
     return <Navigate to="/login" state={location}/>
   }
   return children;

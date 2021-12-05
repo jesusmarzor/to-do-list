@@ -12,7 +12,7 @@ export function Login(){
     const passwordRef = useRef(null);
     const navigate = useNavigate()
     const locate = useLocation();
-    const {isAuthenticated, login} = AuthConsumer();
+    const {user, login} = AuthConsumer();
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)
@@ -25,7 +25,7 @@ export function Login(){
             console.log(err);
         })
     }
-    if(isAuthenticated){
+    if(user !== null){
         return (
             <>
                 Bienvenido {auth.currentUser.displayName}

@@ -1,5 +1,4 @@
 import React, { useRef, useState }  from "react";
-import { auth } from "firebase";
 import { Button } from "components/Button";
 import {AuthConsumer} from "contexts/AuthContext";
 import "./styles.scss";
@@ -8,7 +7,7 @@ export function User(){
     const refArrow = useRef(null);
     const refMenu = useRef(null);
     const [deploy, setDeploy] = useState(false);
-    const {logout} = AuthConsumer()
+    const {user, logout} = AuthConsumer()
     const handleClick = () => {
         if(!deploy){
             refMenu.current.classList.add('deploy');
@@ -25,7 +24,7 @@ export function User(){
     }
     return (
         <div onClick={handleClick} className="user">
-            <p className="user__name">{auth.currentUser.displayName}</p>
+            <p className="user__name">{user.displayName || user.email}</p>
             <svg ref={refArrow} className="user__arrow" version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="10" height="10" viewBox="0 0 1280.000000 1130.000000"
             preserveAspectRatio="xMidYMid meet">

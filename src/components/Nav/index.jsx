@@ -5,12 +5,12 @@ import {AuthConsumer} from "contexts/AuthContext";
 import "./styles.scss";
 
 export function Nav(){
-    const {isAuthenticated} = AuthConsumer();
+    const {user} = AuthConsumer();
     return(
         <nav className="nav">
             <Logo/>
             {
-                (isAuthenticated)
+                (user !== null)
                 ?
                 <User/>
                 :
