@@ -1,5 +1,4 @@
 import React, {useRef} from "react";
-import { auth, createUserWithEmailAndPassword, updateProfile } from "firebase";
 import { useNavigate } from "react-router-dom";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
@@ -11,21 +10,12 @@ export function Register(){
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate();
-    const {login} = AuthConsumer();
+    const {register} = AuthConsumer();
     const signUp = (e) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)
-        .then( (userAuth) => {
-            updateProfile( userAuth.user, {
-                displayName: nameRef.current.value
-            }).then( () => {
-                login();
-            }).then( () => {
-                navigate('/')
-            })
-        })
-        .catch( err => {
-            console.log(err);
+        register(nameRef.current.value, emailRef.current.value,passwordRef.current.value)
+        .then( () => {
+            navigate('/')
         })
     }
     return (

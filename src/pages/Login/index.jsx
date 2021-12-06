@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithEmailAndPassword } from "firebase";
 import { useLocation } from "react-router";
 import "./styles.scss";
 import { Input } from "components/Input";
@@ -15,14 +14,9 @@ export function Login(){
     const {login} = AuthConsumer();
     const signIn = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)
+        login(emailRef.current.value,passwordRef.current.value)
         .then( () => {
-            login();
-        }).then( () => {
             navigate(locate?.state?.pathname ?? '/');
-        })
-        .catch( err => {
-            console.log(err);
         })
     }
     return (
