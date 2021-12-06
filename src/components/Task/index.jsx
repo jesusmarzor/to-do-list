@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import logo from "assets/img/check.png";
+import { ListConsumer } from "contexts/ListContext";
 import "./styles.scss"
 
-function Task({title, done, editTask, deleteTask, setTaskCheck}){
-    const [taskTitle,setTaskTitle] = useState(title);
+function Task({id, title, done}){
+    const { editTask, deleteTask, setTaskCheck } = ListConsumer();
+    const [taskTitle, setTaskTitle] = useState(title);
     const [writing, setWriting] = useState(taskTitle);
     const [editMode,setEditMode] = useState(false);
     const editRef = useRef(null);
@@ -16,13 +18,13 @@ function Task({title, done, editTask, deleteTask, setTaskCheck}){
         setWriting(e.target.value);
     }
     const clickDeleteButton = () => {
-        deleteTask(taskTitle);
+        deleteTask(id);
     }
     const changeEditMode = () => {
         editRef.current.classList.toggle('vanish');
         saveRef.current.classList.toggle('vanish');
         if(editMode){
-            if(editTask(taskTitle, writing)){
+            if(editTask(id, writing)){
                 setTaskTitle(writing);
             }
         }
@@ -51,7 +53,7 @@ function Task({title, done, editTask, deleteTask, setTaskCheck}){
                 checkboxRef.current.classList.add('aparition');
                 checkboxRef.current.classList.remove('desaparition');
             }
-            setTaskCheck(taskTitle);
+            setTaskCheck(id);
         }
     }
     return(
@@ -88,6 +90,4 @@ function Task({title, done, editTask, deleteTask, setTaskCheck}){
         </div>
     )
 }
-export default React.memo(Task, (prevProps, nextProps) => {
-    return prevProps.id === nextProps.id;
-});
+export default React.memo(Task);

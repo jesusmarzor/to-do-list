@@ -1,72 +1,77 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { addTaskFirebase, editTaskFirebase, deleteTaskFirebase, deleteTasksFirebase, getTasksFirebase } from "firebase";
 
 export function useList(){
-    if(localStorage.getItem('tasks') === null)
-        localStorage.setItem('tasks',JSON.stringify([]));
-    const [list, setList] = useState(JSON.parse(localStorage.getItem('tasks')));
+    const [list, setList] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect( () => {
+        getTasksFirebase().then( tasks => {
+            setList(tasks)
+            setLoading(false);
+        });
+    }, [])
     const addTask = (newTask) => {
         if(newTask !== '' ){
-            let exist = false;
-            JSON.parse(localStorage.getItem('tasks')).map(( {title} ) => {
-                if(title === newTask){
-                    exist = true;
-                }
-                return exist;
-            })
-            if(!exist){
-                let listModified = [{ title: newTask, done: false }, ...JSON.parse(localStorage.getItem('tasks'))];
-                localStorage.setItem('tasks', JSON.stringify(listModified));
+            addTaskFirebase({ title: newTask, done: false })
+            .then( docRef => {
+                let listModified = [{ id: docRef.id, title: newTask, done: false }, ...list];
                 setList(listModified);
-                return true;
-            }
+            })
+            return true;
         }
         return false;
     }
-    const editTask = (taskTitle, newTitle) => {
-        if(!list.includes(newTitle) && newTitle !== ''){
-            let listModified = JSON.parse(localStorage.getItem('tasks'));
+    const editTask = (taskID, newTitle) => {
+        if(newTitle !== ''){
             let ind = null;
-            listModified.map( ({title, done}, index) => {
-                if(title === taskTitle){
+            list.map( ({id}, index) => {
+                if(taskID === id){
                     ind = index;
                 }
-                return {title,done};
+                return id;
             })
             if(ind !== null){
-                listModified.splice(ind,1,{title: newTitle, done: listModified[ind].done})
-                localStorage.setItem('tasks',JSON.stringify(listModified));
-                setList(listModified);
+                editTaskFirebase(taskID, {title: newTitle})
+                .then( () => {
+                    let listModified = list;
+                    listModified.splice(ind,1,{id: taskID, title: newTitle, done: listModified[ind].done})
+                    setList(listModified);
+                })
                 return true;
             }
             return false;
         }
     }
-    const deleteTask = (deleteTask) => {
-        let listModified = JSON.parse(localStorage.getItem('tasks')).filter( ({title}) => deleteTask !== title);
-        localStorage.setItem('tasks',JSON.stringify(listModified));
-        setList(listModified);
+    const deleteTask = (taskID) => {
+        deleteTaskFirebase(taskID)
+        .then( () => {
+            let listModified = list.filter( ({id}) => taskID !== id);
+            setList(listModified);
+        })
     }
-    const setTaskCheck = (taskTitle) => {
-        let listModified = JSON.parse(localStorage.getItem('tasks'));
+    const setTaskCheck = (taskID) => {
         let ind = null;
-        let check = false;
-        listModified.map( ({title, done},index) => {
-            if(title === taskTitle){
+        list.map( ({id},index) => {
+            if(taskID === id){
                 ind = index;
-                check = done;
             }
-            return {title, done};
+            return id;
         })
         if(ind !== null){
-            listModified.splice(ind,1,{title: taskTitle, done: !check})
-            localStorage.setItem('tasks',JSON.stringify(listModified));
-            setList(listModified);
+            editTaskFirebase(taskID, {done: !list[ind].done})
+            .then( () => {
+                let listModified = list;
+                listModified.splice(ind,1,{id: taskID, title: list[ind].title, done: !listModified[ind].done})
+                setList(listModified);
+            })
         }
     }
     const deleteTasksCheck = () => {
-        let listModified = JSON.parse(localStorage.getItem('tasks')).filter( ({done}) => done !== true);
-        localStorage.setItem('tasks',JSON.stringify(listModified));
-        setList(listModified);
+        deleteTasksFirebase(list)
+        .then( () => {
+            let listModified = list.filter( ({done}) => done !== true);
+            setList(listModified);
+        })
     }
-    return {list, addTask, editTask, deleteTask, setTaskCheck, deleteTasksCheck};
+    return {list, loading, addTask, editTask, deleteTask, setTaskCheck, deleteTasksCheck};
 }
