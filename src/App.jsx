@@ -4,6 +4,7 @@ import { Login } from 'pages/Login';
 import { Register } from 'pages/Register';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { RequireAuth } from 'components/RequireAuth';
+import { RequireNoAuth } from "components/RequireNoAuth";
 import { AuthProvider } from 'contexts/AuthContext';
 import './App.scss';
 
@@ -22,11 +23,11 @@ function App() {
             />
             <Route
               path='/login'
-              element={<Login/>}
+              element={<RequireNoAuth><Login/></RequireNoAuth>}
             />
             <Route
               path='/register'
-              element={<Register/>}
+              element={<RequireNoAuth><Register/></RequireNoAuth>}
             />
           </Routes>
         </BrowserRouter>

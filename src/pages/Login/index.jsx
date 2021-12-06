@@ -12,7 +12,7 @@ export function Login(){
     const passwordRef = useRef(null);
     const navigate = useNavigate()
     const locate = useLocation();
-    const {user, login} = AuthConsumer();
+    const {login} = AuthConsumer();
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, emailRef.current.value,passwordRef.current.value)
@@ -25,26 +25,17 @@ export function Login(){
             console.log(err);
         })
     }
-    if(user !== null){
-        return (
-            <>
-                Bienvenido {auth.currentUser.displayName}
-                <Link to="/">Ir a la aplicación</Link>
-            </>
-        )
-    }else{
-        return (
-            <>
-                <div className="login">
-                    <h1 className="login__title">Iniciar Sesión</h1>
-                    <form className="login__form form" onSubmit={e => signIn(e)} action="">
-                        <Input placeholder="Introduce tu email" Ref={emailRef} type="email"/>
-                        <Input placeholder="Introduce tu contraseña" Ref={passwordRef} type="password" />
-                        <Button input={true} value="Iniciar Sesión"/>
-                    </form>
-                    <p className="login__register">¿No estas registrado? <Link to="/register">Registrarse</Link></p>
-                </div>
-            </>
-        );
-    }
+    return (
+        <>
+            <div className="login">
+                <h1 className="login__title">Iniciar Sesión</h1>
+                <form className="login__form form" onSubmit={e => signIn(e)} action="">
+                    <Input placeholder="Introduce tu email" Ref={emailRef} type="email"/>
+                    <Input placeholder="Introduce tu contraseña" Ref={passwordRef} type="password" />
+                    <Button input={true} value="Iniciar Sesión"/>
+                </form>
+                <p className="login__register">¿No estas registrado? <Link to="/register">Registrarse</Link></p>
+            </div>
+        </>
+    );
 }
