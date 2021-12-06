@@ -2,6 +2,7 @@ import { Nav } from "components/Nav";
 import { Home } from 'pages/Home';
 import { Login } from 'pages/Login';
 import { Register } from 'pages/Register';
+import { Error404 } from "pages/Error404";
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { RequireAuth } from 'components/RequireAuth';
 import { RequireNoAuth } from "components/RequireNoAuth";
@@ -28,6 +29,10 @@ function App() {
             <Route
               path='/register'
               element={<RequireNoAuth><Register/></RequireNoAuth>}
+            />
+            <Route
+              path='*'
+              element={<Error404/>}
             />
           </Routes>
         </BrowserRouter>

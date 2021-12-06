@@ -1,0 +1,10 @@
+.error404{
+    margin-top: 2rem;
+    text-align: center;
+    &__h1, &__p{
+        padding: .2rem;
+    }
+    &__img{
+        margin-top: 1rem;
+    }
+}
