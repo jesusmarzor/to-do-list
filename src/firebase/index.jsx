@@ -79,6 +79,23 @@ const changeUser = async(file, newName, setUser, setLoading) => {
                 })
             });
         })
+    }else{
+        if(auth.currentUser.displayName !== newName){
+            setLoading(true);
+            updateProfile( auth.currentUser, {
+                displayName: newName
+            })
+            .then( () => {
+                let data = {
+                    uid: auth.currentUser.uid,
+                    name: auth.currentUser.displayName,
+                    email: auth.currentUser.email,
+                    img: auth.currentUser.photoURL
+                }
+                setUser(data);
+                setLoading(false);
+            })
+        }
     }
 }
 
