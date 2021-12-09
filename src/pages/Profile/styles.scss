@@ -1,0 +1,46 @@
+@import "assets/sass/mixins";
+@import "assets/sass/variables";
+.profile{
+    @include flex(column, nowrap, center, center);
+    max-width: 800px;
+    margin: 0 auto;
+    &__title{
+        margin-bottom: 2rem;
+    }
+    .img{
+        position: relative;
+        @include flex(row, nowrap, center, center);
+        width: 10rem;
+        height: 10rem;
+        overflow: hidden;
+        border-radius: 100%;
+        &__label{
+            position: absolute;
+            @include flex(row, nowrap, center, center);
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            font-size: 5rem;
+            color: $blue;
+            opacity: 0;
+            transition: background-color 300ms ease, opacity 300ms ease;
+            &:hover{
+                opacity: 1;
+                background-color: rgba(black, 0.1);
+            }
+        }
+        &__picture{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &__input{
+            display: none;
+        }
+    }
+    &__name{
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        margin: 0.5rem
+    }
+}

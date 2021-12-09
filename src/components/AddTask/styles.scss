@@ -1,8 +1,9 @@
+@import "assets/sass/mixins";
+@import "assets/sass/variables";
+
 .addTask{
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(row, nowrap, center, center);
     width: 30rem;
     margin: 0 auto;
     margin-bottom: 1rem;
@@ -17,12 +18,12 @@
         cursor: pointer;
         position: absolute;
         right: 0;
-        height: 2rem;
         margin-right: 1rem;
-        background-color:  #93c08c;
+        padding: .2rem .4rem;
+        height: 2rem;
+        background-color:  $green;
         border: none;
         color: white;
-        padding: .2rem .4rem;
     }
 }
 

@@ -1,9 +1,10 @@
-import { Nav } from "components/Nav";
+import { Header } from "components/Header";
 import { Home } from 'pages/Home';
+import { Profile } from "pages/Profile";
 import { Login } from 'pages/Login';
 import { Register } from 'pages/Register';
 import { Error404 } from "pages/Error404";
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RequireAuth } from 'components/RequireAuth';
 import { RequireNoAuth } from "components/RequireNoAuth";
 import { AuthProvider } from 'contexts/AuthContext';
@@ -13,14 +14,16 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <header className="header">
-          <Nav/>
-        </header>
         <BrowserRouter>
+          <Header/>
           <Routes>
             <Route
               path='/'
               element={<RequireAuth><Home/></RequireAuth>}
+            />
+             <Route
+              path='/profile'
+              element={<RequireAuth><Profile/></RequireAuth>}
             />
             <Route
               path='/login'

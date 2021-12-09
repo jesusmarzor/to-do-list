@@ -1,22 +1,25 @@
 import React, { useRef, useState }  from "react";
 import { Button } from "components/Button";
+import profileImg from "assets/img/profile.png"; 
 import {AuthConsumer} from "contexts/AuthContext";
+import { Link } from "react-router-dom";
 import "./styles.scss";
+import { Spinner } from "components/Spinner";
 
 export function User(){
     const refArrow = useRef(null);
     const refMenu = useRef(null);
     const [deploy, setDeploy] = useState(false);
-    const {user, logout} = AuthConsumer()
+    const {user, loading, logout} = AuthConsumer()
     const handleClick = () => {
         if(!deploy){
             refMenu.current.classList.add('deploy');
-            refMenu.current.classList.remove('undeploy');
+            refMenu.current.classList.remove('close');
             refArrow.current.classList.add('turnUp');
             refArrow.current.classList.remove('turnDown');
         }else{
             refMenu.current.classList.remove('deploy');
-            refMenu.current.classList.add('undeploy');
+            refMenu.current.classList.add('close');
             refArrow.current.classList.remove('turnUp');
             refArrow.current.classList.add('turnDown');
         }
@@ -24,7 +27,14 @@ export function User(){
     }
     return (
         <div onClick={handleClick} className="user">
-            <p className="user__name">{user.displayName || user.email}</p>
+            {
+                (loading)
+                ?
+                <Spinner min={true}/>
+                :
+                <img className="user__img" src={user.img ?? profileImg} alt="profile"/>
+            }
+            
             <svg ref={refArrow} className="user__arrow" version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="10" height="10" viewBox="0 0 1280.000000 1130.000000"
             preserveAspectRatio="xMidYMid meet">
@@ -39,7 +49,11 @@ export function User(){
                     18z"/>
                 </g>
             </svg>
-            <div ref={refMenu} className="user__menu">
+            <div ref={refMenu} className="user__menu menu">
+                <p className="menu__name">{user.name || user.email}</p>
+                <nav className="menu__list list">
+                    <li className="list__li"><Link to="/profile" className="list__link">Perfil</Link></li>
+                </nav>
                 <Button click={logout} value="Cerrar Sesión"/>
             </div>
         </div>

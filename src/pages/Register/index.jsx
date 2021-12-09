@@ -4,6 +4,7 @@ import { Input } from "components/Input";
 import { Button } from "components/Button";
 import {AuthConsumer} from "contexts/AuthContext";
 import "./styles.scss";
+import { ButtonBack } from "components/ButtonBack";
 
 export function Register(){
     const nameRef = useRef(null);
@@ -20,6 +21,7 @@ export function Register(){
     }
     return (
         <div className="register">
+            <ButtonBack back="/login"/>
             <h1 className="register__title">Registrarse</h1>
             <form className="register__form" onSubmit={e => signUp(e)} action="">
                 <Input placeholder="Introduce tu nombre" Ref={nameRef} type="text"/>

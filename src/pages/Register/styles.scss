@@ -1,12 +1,12 @@
+@import "assets/sass/mixins";
 .register{
-    text-align: center;
+    @include flex(column, nowrap, center, center);
+    max-width: 800px;
+    margin: 0 auto;
     &__title{
-        padding: 2rem;
+        margin-bottom: 2rem;
     }
     &__form{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
+        @include flex(column, nowrap, flex-end, center);
     }
 }

@@ -3,10 +3,18 @@ import {auth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndP
 
 export function useAuth(){
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     useEffect( () => {
         auth.onAuthStateChanged( userAuth => {
             if(userAuth){
-                setUser(userAuth);
+                let data = {
+                    uid: userAuth.uid,
+                    name: userAuth.displayName,
+                    email: userAuth.email,
+                    img: userAuth.photoURL
+                }
+                setUser(data);
+                setLoading(false);
             }else{
                 setUser(null);
             }
@@ -26,5 +34,5 @@ export function useAuth(){
 
     const logout = () =>  auth.signOut();
     
-    return useMemo(() => ({user, login, register, logout}),[user]);
+    return useMemo(() => ({user, loading, setLoading, setUser, login, register, logout}),[user,loading]);
 }

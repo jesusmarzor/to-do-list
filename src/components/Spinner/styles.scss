@@ -1,19 +1,15 @@
+@import "assets/sass/mixins";
+@import "assets/sass/variables";
 .spinner{
   margin: 0 auto;
-    border: 3px solid #2196f3;
-    border-left-color: transparent;
-    border-radius: 100%;
-    width: 35px;
-    height: 35px;
-    animation: loading 1s linear infinite;
-}
-
-@keyframes loading {
-    0% {
-      transform: rotate(0deg);
-    }
-  
-    100% {
-      transform: rotate(360deg);
-    }
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid $blue;
+  border-left-color: transparent;
+  border-radius: 100%;
+  animation: loading 1s linear infinite;
+  &__min{
+    width: 1rem;
+    height: 1rem;
+  }
 }

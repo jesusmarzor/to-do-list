@@ -1,8 +1,9 @@
 .button{
     cursor: pointer;
-    height: 2rem;
+    padding: .2rem .4rem;
+    min-height: 2rem;
+    min-width: 4.5rem;
     background-color:  #93c08c; //#ea899a;
     border: none;
     color: white;
-    padding: .2rem .4rem;
 }

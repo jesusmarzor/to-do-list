@@ -1,42 +1,42 @@
+@import "assets/sass/keyframes";
+@import "assets/sass/mixins";
+
 .task{
     position: relative;
-    border-bottom: 1px solid black;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    @include flex(row,nowrap,center,center);
     width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid black;
     .values{
         position: relative;
+        @include flex(row,nowrap,flex-start,center);
         padding: 1.2rem;
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        overflow: hidden;
         margin-right: 4.5rem;
+        width: 100%;
+        overflow: hidden;
         &__check{
             position: absolute;
             width: 1rem;
             height: 1rem;
             pointer-events: none;
             display: block;
-            &.desaparition{
-                animation: vanish 150ms forwards;
+            &.vanishCheck{
+                animation: vanishCheck 300ms forwards;
             }
-            &.aparition{
-                animation: sorprais 150ms forwards;
+            &.appearCheck{
+                animation: appearCheck 300ms forwards;
             }
         }
         &__logo{
+            display: block;
             position: absolute;
             width: 1rem;
             height: 1rem;
-            display: block;
-            &.desaparition{
-                animation: vanish 150ms forwards;
+            &.vanishCheck{
+                animation: vanishCheck 300ms forwards;
             }
-            &.aparition{
-                animation: sorprais 150ms forwards;
+            &.appearCheck{
+                animation: appearCheck 300ms forwards;
             }
         }
         &__title{
@@ -45,16 +45,13 @@
             &.check{
                 text-decoration: line-through;
             }
-            // &:hover{
-            //     cursor: text;
-            // }
         }
         &__input{
             margin-left: 2rem;
+            width: 100%;
             font-size: 1rem;
             border: none;
             outline: none;
-            width: 100%;
             color: #BE0032;
         }
     }
@@ -67,30 +64,5 @@
     }
     .vanish{
         display: none;
-    }
-}
-
-@keyframes vanish{
-    0%{
-        transform: rotate(0deg);
-        width: 1rem;
-        height: 1rem;
-    }
-    100%{
-        transform: rotate(180deg);
-        width: 0;
-        height: 0;
-    }
-}
-@keyframes sorprais{
-    0%{
-        transform: rotate(180deg);
-        width: 0rem;
-        height: 0rem;
-    }
-    100%{
-        transform: rotate(0deg);
-        width: 1rem;
-        height: 1rem;
     }
 }

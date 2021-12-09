@@ -43,15 +43,15 @@ function Task({id, title, done}){
                 checkboxRef.current.classList.toggle('vanish');
             },150)
             if(logoRef.current.classList.contains('vanish')){
-                logoRef.current.classList.add('aparition');
-                logoRef.current.classList.remove('desaparition');
-                checkboxRef.current.classList.add('desaparition');
-                checkboxRef.current.classList.remove('aparition');
+                logoRef.current.classList.add('appearCheck');
+                logoRef.current.classList.remove('vanishCheck');
+                checkboxRef.current.classList.add('vanishCheck');
+                checkboxRef.current.classList.remove('appearCheck');
             }else{
-                logoRef.current.classList.add('desaparition');
-                logoRef.current.classList.remove('aparition');
-                checkboxRef.current.classList.add('aparition');
-                checkboxRef.current.classList.remove('desaparition');
+                logoRef.current.classList.add('vanishCheck');
+                logoRef.current.classList.remove('appearCheck');
+                checkboxRef.current.classList.add('appearCheck');
+                checkboxRef.current.classList.remove('vanishCheck');
             }
             setTaskCheck(id);
         }

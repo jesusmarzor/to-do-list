@@ -1,23 +1,15 @@
+@import "assets/sass/mixins";
 .logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(row, nowrap, center, center);
     padding: 1.5rem 1rem;
-    // &__text{
-    //     color: white;
-    // }
+    text-decoration: none;
+    color: black;
     &__img{
-        margin-left: 1rem;
         width: 30px;
         height: 30px;
+        margin-left: 1rem;
     }
 }
-
-// @media (max-width: 450px){
-//     .logo{
-//         order: 2;
-//     }
-// }
 
 @media (max-width: 337px){
     .logo{
@@ -26,9 +18,9 @@
             font-size: 20px;
         }
         &__img{
-            margin-left: 0.2rem;
             width: 20px;
             height: 20px;
+            margin-left: 0.2rem;
         }
     }
 }

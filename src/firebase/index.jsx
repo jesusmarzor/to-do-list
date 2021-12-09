@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, getDocs } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 const firebaseConfig = {
     apiKey: "AIzaSyBiT2R9yW9-uRVqKgW78k4d1EObTvOsLQQ",
     authDomain: "to-do-list-7c4cc.firebaseapp.com",
@@ -49,3 +49,37 @@ const deleteTasksFirebase = async (list) => {
 }
 
 export { addTaskFirebase, editTaskFirebase, deleteTaskFirebase, deleteTasksFirebase, getTasksFirebase }
+
+// Storage
+var storage = getStorage(firebaseApp);
+const changeUser = async(file, newName, setUser, setLoading) => {
+    if(file){
+        setLoading(true);
+        var imageRef = ref(storage, '/'+auth.currentUser.uid+'/'+file.name); 
+        await uploadBytesResumable(imageRef, file)
+        .then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                updateProfile( auth.currentUser, {
+                    photoURL: url
+                })
+                .then( () => {
+                    updateProfile( auth.currentUser, {
+                        displayName: newName
+                    })
+                    .then( () => {
+                        let data = {
+                            uid: auth.currentUser.uid,
+                            name: auth.currentUser.displayName,
+                            email: auth.currentUser.email,
+                            img: auth.currentUser.photoURL
+                        }
+                        setUser(data);
+                        setLoading(false);
+                    })
+                })
+            });
+        })
+    }
+}
+
+export { changeUser }

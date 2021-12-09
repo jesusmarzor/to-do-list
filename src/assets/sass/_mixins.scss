@@ -1,0 +1,18 @@
+@mixin position($position,$top,$right,$bottom,$left){
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+@mixin flex($direction,$wrap,$justify,$align){
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+@mixin opacity($opacity, $events){
+    opacity: $opacity;
+    pointer-events: $events;
+}

@@ -1,8 +1,6 @@
+@import "assets/sass/mixins";
 .listOfTask{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex(column, nowrap, center, center);
     width: 30rem;
     margin: 0 auto;
     .list{
