@@ -24,7 +24,7 @@ export function useAuth(){
     const login = async (email,password) => await signInWithEmailAndPassword(auth, email, password);
 
     const register = async (name, email,password) => {
-        setLoading({img:true, name:true});
+        setLoading(prevState => ({...prevState,name: true}));
         await createUserWithEmailAndPassword(auth, email, password)
         .then( (userAuth) => {
             updateProfile( userAuth.user, {
@@ -32,13 +32,13 @@ export function useAuth(){
             })
             .then( () => {
                 let data = {
-                    uid: userAuth.uid,
-                    name: userAuth.displayName,
-                    email: userAuth.email,
-                    img: userAuth.photoURL
+                    uid: auth.currentUser.uid,
+                    name: auth.currentUser.displayName,
+                    email: auth.currentUser.email,
+                    img: auth.currentUser.photoURL
                 }
                 setUser(data);
-                setLoading({img:false, name:false});
+                setLoading(prevState => ({...prevState,name: false}));
             })
         })
     }
