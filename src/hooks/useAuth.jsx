@@ -3,7 +3,7 @@ import {auth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndP
 
 export function useAuth(){
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState({img: true, name: true});
     useEffect( () => {
         auth.onAuthStateChanged( userAuth => {
             if(userAuth){
@@ -14,7 +14,7 @@ export function useAuth(){
                     img: userAuth.photoURL
                 }
                 setUser(data);
-                setLoading(false);
+                setLoading({img:false, name:false});
             }else{
                 setUser(null);
             }
@@ -24,10 +24,21 @@ export function useAuth(){
     const login = async (email,password) => await signInWithEmailAndPassword(auth, email, password);
 
     const register = async (name, email,password) => {
+        setLoading({img:true, name:true});
         await createUserWithEmailAndPassword(auth, email, password)
         .then( (userAuth) => {
             updateProfile( userAuth.user, {
                 displayName: name
+            })
+            .then( () => {
+                let data = {
+                    uid: userAuth.uid,
+                    name: userAuth.displayName,
+                    email: userAuth.email,
+                    img: userAuth.photoURL
+                }
+                setUser(data);
+                setLoading({img:false, name:false});
             })
         })
     }

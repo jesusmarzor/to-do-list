@@ -38,9 +38,30 @@
             display: none;
         }
     }
-    &__name{
-        font-size: 1.2rem;
-        padding: 0.5rem;
-        margin: 0.5rem
+    .name{
+        margin: 2rem;
+        @include flex(column, nowrap, center, flex-start);
+        &__label{
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+        &__input{
+            position: relative;
+            width: 15rem;
+            height: 3rem;  
+            background-color: blue;
+        }
+        &__writing{
+            font-size: 1.2rem;
+            width: 100%;
+            height: 100%;
+        }
+        &__loading{
+            @include position(absolute, 0, 0.5rem, auto, auto);
+            @include flex(row, nowrap, center, center);
+            height: 3.3rem;
+            
+        }
     }
 }

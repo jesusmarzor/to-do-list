@@ -28,13 +28,12 @@ export function User(){
     return (
         <div onClick={handleClick} className="user">
             {
-                (loading)
+                (loading.img)
                 ?
                 <Spinner min={true}/>
                 :
-                <img className="user__img" src={user.img ?? profileImg} alt="profile"/>
+                    <img className="user__img" src={user.img ?? profileImg} alt="profile"/>
             }
-            
             <svg ref={refArrow} className="user__arrow" version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="10" height="10" viewBox="0 0 1280.000000 1130.000000"
             preserveAspectRatio="xMidYMid meet">

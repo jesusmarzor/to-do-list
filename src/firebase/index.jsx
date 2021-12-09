@@ -54,7 +54,7 @@ export { addTaskFirebase, editTaskFirebase, deleteTaskFirebase, deleteTasksFireb
 var storage = getStorage(firebaseApp);
 const changeUser = async(file, newName, setUser, setLoading) => {
     if(file){
-        setLoading(true);
+        setLoading(prevState => ({...prevState,img: true}));
         var imageRef = ref(storage, '/'+auth.currentUser.uid+'/'+file.name); 
         await uploadBytesResumable(imageRef, file)
         .then((snapshot) => {
@@ -63,39 +63,33 @@ const changeUser = async(file, newName, setUser, setLoading) => {
                     photoURL: url
                 })
                 .then( () => {
-                    updateProfile( auth.currentUser, {
-                        displayName: newName
-                    })
-                    .then( () => {
-                        let data = {
-                            uid: auth.currentUser.uid,
-                            name: auth.currentUser.displayName,
-                            email: auth.currentUser.email,
-                            img: auth.currentUser.photoURL
-                        }
-                        setUser(data);
-                        setLoading(false);
-                    })
+                    let data = {
+                        uid: auth.currentUser.uid,
+                        name: auth.currentUser.displayName,
+                        email: auth.currentUser.email,
+                        img: auth.currentUser.photoURL
+                    }
+                    setUser(data);
+                    setLoading(prevState => ({...prevState,img: false}));
                 })
             });
         })
-    }else{
-        if(auth.currentUser.displayName !== newName){
-            setLoading(true);
-            updateProfile( auth.currentUser, {
-                displayName: newName
-            })
-            .then( () => {
-                let data = {
-                    uid: auth.currentUser.uid,
-                    name: auth.currentUser.displayName,
-                    email: auth.currentUser.email,
-                    img: auth.currentUser.photoURL
-                }
-                setUser(data);
-                setLoading(false);
-            })
-        }
+    }
+    if(auth.currentUser.displayName !== newName){
+        setLoading(prevState => ({...prevState,name: true}));
+        updateProfile( auth.currentUser, {
+            displayName: newName
+        })
+        .then( () => {
+            let data = {
+                uid: auth.currentUser.uid,
+                name: auth.currentUser.displayName,
+                email: auth.currentUser.email,
+                img: auth.currentUser.photoURL
+            }
+            setUser(data);
+            setLoading(prevState => ({...prevState,name: false}));
+        })
     }
 }
 
