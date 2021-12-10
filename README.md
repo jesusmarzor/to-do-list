@@ -3,6 +3,7 @@ Proyecto personal dirigido para aquellas personas que le gusta organizar sus tar
 
 ## Detalles 📋
 Realizado con React y Firebase.
+
 Para realizar el CSS, he utilizado Sass y la metodología BEM.
 
 ## Aportaciones :pray:
