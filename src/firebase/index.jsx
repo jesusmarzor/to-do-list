@@ -2,14 +2,21 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, getDocs } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+const {REACT_APP_API_KEY, 
+    REACT_APP_AUTH_DOMAIN,
+    REACT_APP_PROJECT_ID, 
+    REACT_APP_STORAGE_BUCKET, 
+    REACT_APP_MESSAGING_SENDER_ID, 
+    REACT_APP_APP_ID, 
+    REACT_APP_MEASUREMENT_ID} = process.env;
 const firebaseConfig = {
-    apiKey: "AIzaSyBiT2R9yW9-uRVqKgW78k4d1EObTvOsLQQ",
-    authDomain: "to-do-list-7c4cc.firebaseapp.com",
-    projectId: "to-do-list-7c4cc",
-    storageBucket: "to-do-list-7c4cc.appspot.com",
-    messagingSenderId: "381328186290",
-    appId: "1:381328186290:web:8c829a3bc6ab72c81022ab",
-    measurementId: "G-YC7NL05D5Z"
+    apiKey: REACT_APP_API_KEY,
+    authDomain: REACT_APP_AUTH_DOMAIN,
+    projectId: REACT_APP_PROJECT_ID,
+    storageBucket: REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
+    appId: REACT_APP_APP_ID,
+    measurementId: REACT_APP_MEASUREMENT_ID
 }
 
 const firebaseApp = initializeApp(firebaseConfig);
