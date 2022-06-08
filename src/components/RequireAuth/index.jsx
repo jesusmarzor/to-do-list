@@ -1,5 +1,4 @@
-import { Navigate } from "react-router-dom";
-import { useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router-dom";
 import {AuthConsumer} from "contexts/AuthContext";
 
 export function RequireAuth({ children }){

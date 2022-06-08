@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
 import {AuthConsumer} from "contexts/AuthContext";
